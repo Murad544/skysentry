@@ -1,0 +1,189 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: #080c14;
+    --foreground: #e2e8f0;
+    --primary: #00d4aa;
+    --primary-foreground: #080c14;
+    --secondary: #111827;
+    --secondary-foreground: #94a3b8;
+    --accent: #f59e0b;
+    --accent-foreground: #080c14;
+    --muted: #1e2535;
+    --muted-foreground: #64748b;
+    --card: #0d1420;
+    --card-foreground: #e2e8f0;
+    --border: #1e2d3d;
+    --input: #1e2535;
+    --ring: #00d4aa;
+    --radius: 8px;
+    --font-sans: var(--font-geist-sans), 'Geist', sans-serif;
+    --critical: #ef4444;
+    --high: #f97316;
+    --medium: #f59e0b;
+    --low: #22c55e;
+    --radar-bg: #050a10;
+    --radar-grid: #0d2a1f;
+    --radar-sweep: #00d4aa;
+  }
+
+  * {
+    box-sizing: border-box;
+    border-color: var(--border);
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  h1, h2, h3, h4, h5, h6, p {
+    margin: 0;
+  }
+}
+
+@layer utilities {
+  .font-tabular {
+    font-variant-numeric: tabular-nums;
+  }
+
+  .radar-container {
+    background: radial-gradient(circle, #051a10 0%, #020d08 60%, #010608 100%);
+  }
+
+  .radar-sweep {
+    background: conic-gradient(
+      from 0deg,
+      transparent 300deg,
+      rgba(0, 212, 170, 0.03) 320deg,
+      rgba(0, 212, 170, 0.12) 340deg,
+      rgba(0, 212, 170, 0.35) 355deg,
+      rgba(0, 212, 170, 0.6) 360deg
+    );
+  }
+
+  .drone-blip-critical {
+    background: #ef4444;
+    box-shadow: 0 0 8px 3px rgba(239, 68, 68, 0.7), 0 0 20px 6px rgba(239, 68, 68, 0.3);
+  }
+
+  .drone-blip-high {
+    background: #f97316;
+    box-shadow: 0 0 8px 3px rgba(249, 115, 22, 0.7), 0 0 20px 6px rgba(249, 115, 22, 0.3);
+  }
+
+  .drone-blip-medium {
+    background: #f59e0b;
+    box-shadow: 0 0 8px 3px rgba(245, 158, 11, 0.7), 0 0 20px 6px rgba(245, 158, 11, 0.3);
+  }
+
+  .drone-blip-low {
+    background: #22c55e;
+    box-shadow: 0 0 8px 3px rgba(34, 197, 94, 0.7), 0 0 20px 6px rgba(34, 197, 94, 0.3);
+  }
+
+  .glow-primary {
+    text-shadow: 0 0 12px rgba(0, 212, 170, 0.6);
+  }
+
+  .card-elevated {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+  }
+
+  .stat-card-critical {
+    background: rgba(239, 68, 68, 0.08);
+    border: 1px solid rgba(239, 68, 68, 0.25);
+  }
+
+  .stat-card-success {
+    background: rgba(0, 212, 170, 0.06);
+    border: 1px solid rgba(0, 212, 170, 0.2);
+  }
+
+  .stat-card-warning {
+    background: rgba(245, 158, 11, 0.07);
+    border: 1px solid rgba(245, 158, 11, 0.2);
+  }
+
+  .stat-card-neutral {
+    background: rgba(100, 116, 139, 0.08);
+    border: 1px solid rgba(100, 116, 139, 0.2);
+  }
+
+  .signal-bar {
+    background: linear-gradient(to top, var(--primary), rgba(0, 212, 170, 0.4));
+  }
+
+  .signal-bar-weak {
+    background: linear-gradient(to top, #ef4444, rgba(239, 68, 68, 0.4));
+  }
+
+  .signal-bar-medium {
+    background: linear-gradient(to top, #f59e0b, rgba(245, 158, 11, 0.4));
+  }
+
+  .scrollbar-dark::-webkit-scrollbar {
+    width: 4px;
+  }
+  .scrollbar-dark::-webkit-scrollbar-track {
+    background: var(--background);
+  }
+  .scrollbar-dark::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 2px;
+  }
+  .scrollbar-dark::-webkit-scrollbar-thumb:hover {
+    background: var(--muted-foreground);
+  }
+
+  .animate-radar-sweep {
+    animation: radarSweep 4s linear infinite;
+  }
+
+  .animate-blip-pulse {
+    animation: blipPulse 2s ease-in-out infinite;
+  }
+
+  .animate-blip-pulse-fast {
+    animation: blipPulse 1s ease-in-out infinite;
+  }
+
+  .animate-scan-line {
+    animation: scanLine 3s ease-in-out infinite;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-out forwards;
+  }
+
+  @keyframes radarSweep {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  @keyframes blipPulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.4); opacity: 0.7; }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes scanLine {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+  }
+}
