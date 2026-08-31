@@ -5,7 +5,6 @@ import SystemHealthCards from './SystemHealthCards';
 import SensorGrid from './SensorGrid';
 import PlatformDiagram from './PlatformDiagram';
 import DetectionHourlyChart from './DetectionHourlyChart';
-import AlertConfigPanel from './AlertConfigPanel';
 import { Activity } from 'lucide-react';
 
 export default function SystemStatusContent() {
@@ -47,11 +46,8 @@ export default function SystemStatusContent() {
           />
         </div>
 
-        {/* Chart + alert config */}
-        <div className="grid grid-cols-1 xl:grid-cols-[1fr_360px] 2xl:grid-cols-[1fr_400px] gap-4">
-          <DetectionHourlyChart />
-          <AlertConfigPanel />
-        </div>
+        {/* Detection hourly chart — full width */}
+        <DetectionHourlyChart />
       </div>
     </div>
   );
